@@ -32,8 +32,10 @@ class Movies extends Component {
     ));
 
     return (
-      <div>
-        <h4>There are {this.state.movies.length} movies in your list</h4>
+      <React.Fragment>
+        <p className="h4">
+          There are {this.state.movies.length} movies in the database
+        </p>
         <table className="table">
           <thead>
             <tr>
@@ -46,7 +48,7 @@ class Movies extends Component {
           </thead>
           <tbody>{movieItems}</tbody>
         </table>
-      </div>
+      </React.Fragment>
     );
   }
 }
