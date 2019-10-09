@@ -5,12 +5,21 @@ const movies = getMovies();
 
 class Movies extends Component {
   state = {
-    movies
+    movies,
+    like: true
   };
 
   handleDelete = movie => {
     const newMovies = this.state.movies.filter(m => m._id !== movie._id);
     this.setState({ movies: newMovies });
+  };
+
+  toggleLike = movie => {
+    const likedMovie = this.state.movies.filter(m => m._id !== movie._id);
+    console.log("clicked movie", likedMovie);
+    if (this.state.like) {
+      this.setState({ like: !this.state.like });
+    }
   };
 
   render() {
@@ -20,6 +29,13 @@ class Movies extends Component {
         <td>{movie.genre.name}</td>
         <td>{movie.numberInStock}</td>
         <td>{movie.dailyRentalRate}</td>
+        <td>
+          <i
+            className={this.state.like ? "fa fa-heart-o" : "fa fa-heart"}
+            onClick={() => this.toggleLike(movie)}
+            aria-hidden="true"
+          ></i>
+        </td>
         <td>
           <button
             className="btn btn-danger btn-sm"
@@ -43,6 +59,7 @@ class Movies extends Component {
               <th>Genre</th>
               <th>Stock</th>
               <th>Rate</th>
+              <th>Like?</th>
               <th>Action</th>
             </tr>
           </thead>
