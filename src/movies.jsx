@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Like from "./like";
 import { getMovies } from "./services/fakeMovieService";
 
 const movies = getMovies();
@@ -14,13 +15,11 @@ class Movies extends Component {
     this.setState({ movies: newMovies });
   };
 
-  toggleLike = movie => {
-    const likedMovie = this.state.movies.filter(m => m._id !== movie._id);
-    console.log("clicked movie", likedMovie);
-    if (this.state.like) {
-      this.setState({ like: !this.state.like });
-    }
-  };
+  // toggleLike = movie => {
+  //   const likedMovie = this.state.movies.filter(m => m._id === movie._id);
+  //   console.log("clicked movie", likedMovie);
+  //   this.setState({ like: !this.state.like });
+  // };
 
   render() {
     const movieItems = this.state.movies.map(movie => (
@@ -30,11 +29,7 @@ class Movies extends Component {
         <td>{movie.numberInStock}</td>
         <td>{movie.dailyRentalRate}</td>
         <td>
-          <i
-            className={this.state.like ? "fa fa-heart-o" : "fa fa-heart"}
-            onClick={() => this.toggleLike(movie)}
-            aria-hidden="true"
-          ></i>
+          <Like like={true} />
         </td>
         <td>
           <button
