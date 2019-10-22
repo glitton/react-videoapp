@@ -1,11 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
+import "font-awesome/css/font-awesome.css";
 
-class Like extends Component {
-  render() {
-    // let classes = "fa-fa-heart-o";
-    // if (!this.props.like) classes += "-o";
-    return <i className="fa-fa-heart" aria-hidden="true"></i>;
-  }
-}
+const Like = props => {
+  let classes = "fa fa-heart";
+  if (!props.like) classes += "-o";
+  return (
+    <i
+      className={classes}
+      style={{ cursor: "pointer" }}
+      aria-hidden="true"
+      onClick={props.onClick}
+    ></i>
+  );
+};
 
 export default Like;

@@ -6,8 +6,7 @@ const movies = getMovies();
 
 class Movies extends Component {
   state = {
-    movies,
-    like: true
+    movies
   };
 
   handleDelete = movie => {
@@ -15,11 +14,14 @@ class Movies extends Component {
     this.setState({ movies: newMovies });
   };
 
-  // toggleLike = movie => {
-  //   const likedMovie = this.state.movies.filter(m => m._id === movie._id);
-  //   console.log("clicked movie", likedMovie);
-  //   this.setState({ like: !this.state.like });
-  // };
+  handleLike = movie => {
+    const movies = [...this.state.movies];
+    const index = movies.indexOf(movie);
+    movies[index] = { ...movies[index] };
+    movies[index].liked = !movies[index].liked;
+    this.setState({ movies });
+    // console.log("clicked like", movie.title);
+  };
 
   render() {
     const movieItems = this.state.movies.map(movie => (
@@ -29,7 +31,7 @@ class Movies extends Component {
         <td>{movie.numberInStock}</td>
         <td>{movie.dailyRentalRate}</td>
         <td>
-          <Like like={true} />
+          <Like like={movie.liked} onClick={() => this.handleLike(movie)} />
         </td>
         <td>
           <button
