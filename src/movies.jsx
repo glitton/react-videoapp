@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Like from "./like";
 import Pagination from "./pagination";
 import { getMovies } from "./services/fakeMovieService";
+import { paginate } from "./utils/paginate";
 
 const movies = getMovies();
 
@@ -32,26 +33,8 @@ class Movies extends Component {
 
   render() {
     const { length: count } = this.state.movies;
-    const { pageSize, currentPage } = this.state;
-    const movieItems = this.state.movies.map(movie => (
-      <tr key={movie._id}>
-        <td>{movie.title}</td>
-        <td>{movie.genre.name}</td>
-        <td>{movie.numberInStock}</td>
-        <td>{movie.dailyRentalRate}</td>
-        <td>
-          <Like like={movie.liked} onClick={() => this.handleLike(movie)} />
-        </td>
-        <td>
-          <button
-            className="btn btn-danger btn-sm"
-            onClick={() => this.handleDelete(movie)}
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
-    ));
+    const { pageSize, currentPage, movies: allMovies } = this.state;
+    const movies = paginate(allMovies, currentPage, pageSize);
 
     return (
       <React.Fragment>
@@ -67,7 +50,30 @@ class Movies extends Component {
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>{movieItems}</tbody>
+          <tbody>
+            {movies.map(movie => (
+              <tr key={movie._id}>
+                <td>{movie.title}</td>
+                <td>{movie.genre.name}</td>
+                <td>{movie.numberInStock}</td>
+                <td>{movie.dailyRentalRate}</td>
+                <td>
+                  <Like
+                    like={movie.liked}
+                    onClick={() => this.handleLike(movie)}
+                  />
+                </td>
+                <td>
+                  <button
+                    className="btn btn-danger btn-sm"
+                    onClick={() => this.handleDelete(movie)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
         <Pagination
           itemsCount={count}
