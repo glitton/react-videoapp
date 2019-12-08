@@ -1,14 +1,16 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
-import _ from "lodash"; //library to help generate pages
+import _ from "lodash"; //lodash comes from underscore
 
 const Pagination = props => {
   const { itemsCount, pageSize } = props;
   const pagesCount = Math.ceil(itemsCount / pageSize);
+  // console.log(pagesCount);
   if (pagesCount === 1) return null;
-  const pages = _.range(1, pagesCount + 1); //returns an array
+  const pages = _.range(1, pagesCount + 1);
 
   return (
-    <nav aria-label="Page navigation example">
+    <nav>
       <ul className="pagination">
         {pages.map(page => (
           <li key={page} className="page-item">

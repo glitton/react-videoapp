@@ -8,7 +8,7 @@ const movies = getMovies();
 class Movies extends Component {
   state = {
     movies,
-    pageSize: 4
+    pageSize: 10
   };
 
   handleDelete = movie => {
