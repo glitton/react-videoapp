@@ -8,7 +8,7 @@ const ListGroup = props => {
     selectedItem,
     onItemSelect
   } = props;
-  console.log("movie items", items);
+  // console.log("movie items", items);
   return (
     <ul className="list-group">
       {items.map(item => (
