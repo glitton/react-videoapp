@@ -6,7 +6,7 @@ import _ from "lodash"; //lodash comes from underscore
 const Pagination = props => {
   const { itemsCount, pageSize, currentPage, onPageChange } = props;
   const pagesCount = Math.ceil(itemsCount / pageSize);
-  console.log(currentPage);
+  // console.log(currentPage);s
   if (pagesCount === 1) return null;
   const pages = _.range(1, pagesCount + 1);
 
