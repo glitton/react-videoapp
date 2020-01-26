@@ -13,6 +13,6 @@ code {
     monospace;
 }
 
-/* td {
-  background-color: black;
-} */
+.clickable {
+  cursor: pointer;
+}
