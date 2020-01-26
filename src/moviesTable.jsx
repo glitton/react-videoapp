@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Like from "./like";
+import Like from "./utils/common/like";
 
 class MoviesTable extends Component {
   raiseSort = columnName => {
