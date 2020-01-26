@@ -3,8 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import _ from "lodash"; //lodash comes from underscore
 
-const Pagination = props => {
-  const { itemsCount, pageSize, currentPage, onPageChange } = props;
+const Pagination = ({ itemsCount, pageSize, currentPage, onPageChange }) => {
   const pagesCount = Math.ceil(itemsCount / pageSize);
   // console.log(currentPage);s
   if (pagesCount === 1) return null;
